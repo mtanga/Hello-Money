@@ -1,0 +1,7 @@
+{
+  "name": "hello-money",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
