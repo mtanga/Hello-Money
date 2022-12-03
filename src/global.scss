@@ -24,3 +24,66 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@media (min-width: 768px){
+ 
+    .ios .hydrated{
+        /*width: 50%;*/
+        margin-left: auto;
+        margin-right: auto;
+       /* display: block;*/
+    }
+  
+}
+.header-md::after {
+    left: 0;
+    bottom: -5px;
+    background-position: left 0 top -2px;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-image: none;
+    background-repeat: repeat-x;
+    content: "";
+}
+
+
+ion-item.ion-activatable,
+ion-avatar.ion-activatable {
+  position: relative;
+  overflow: hidden;
+}
+
+.text-height {
+  height: 21px;
+}
+
+.custom-popover .popover-content {
+  top: 15px !important;
+  left: 100px !important;
+  padding: 10px;
+}
+
+.searchbar-input.sc-ion-searchbar-md{
+  border-radius: 75px;
+  font-size: 14px;
+  height: 2.5em;
+}
+.action-sheet-group.sc-ion-action-sheet-md:first-child {
+  margin-bottom: 57px;
+    border-radius: 15px 15px 0px 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.card-class .popover-content{
+  padding: 10px;
+    /*top: 100px !important;*/
+    width: 100%;
+    left: 0px !important;
+    border-radius: 25px 25px 0px 0px;
+
+}
+

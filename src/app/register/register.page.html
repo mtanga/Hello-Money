@@ -1,0 +1,76 @@
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+    <ion-title style="color:green;" class="ion-text-right custom-font" (click)="login()">{{ 'chaines.haveAccount' | translate }}</ion-title>
+    <ion-buttons slot="start" color="secondary">
+      <ion-back-button class="white" defaultHref="/login"> </ion-back-button>
+    </ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <svg class="back-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#ff001b" d="M68.6,-33.5C81.6,-17.2,79.6,13.8,65.7,37.6C51.8,61.3,25.9,77.8,2.1,76.6C-21.7,75.4,-43.5,56.5,-54.2,34.6C-65,12.7,-64.8,-12.3,-53.9,-27.4C-43,-42.4,-21.5,-47.6,3.2,-49.4C27.9,-51.2,55.7,-49.7,68.6,-33.5Z" transform="translate(100 100)" />
+</svg>
+
+<div class="ion-padding">
+  <form class="ion-padding" >
+    <div style="padding-top: 25px;">
+      <h3>{{ 'chaines.createAccount' | translate }}</h3>
+    </div>
+    <div class="wrap-input">
+      <input class="input" type="text" [(ngModel)]="first_name" name="first_name" [placeholder]='"chaines.firstName" | translate'>
+    </div>
+
+    <div class="wrap-input">
+        <input class="input" type="text" [(ngModel)]="last_name" name="last_name" [placeholder]='"chaines.lastName" | translate'>
+    </div>
+
+    <div class="wrap-input">
+      <ion-intl-tel-input 
+        id="phone-number" 
+        name="phone-number"
+        enableAutoCountrySelect="true"
+        modalTitle="Sélectionner votre pays"
+        modalCloseText="Fermer"
+        modalCanSearch="true"
+        [(ngModel)]="phoneNumber" 
+        #phoneNumberControl="ngModel" >
+      </ion-intl-tel-input>
+    </div>
+
+    <div class="wrap-input">
+    <input class="input" type="email" [(ngModel)]="email" name="email" [placeholder]='"chaines.email" | translate'>
+    </div>
+
+    <ion-item class="wrap-input">
+    <input class="input" [type]="passwordType"  [(ngModel)]="password" name="password" clearOnEdit="false" [placeholder]='"chaines.Password" | translate' >
+    <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)="hideShowPassword()"></ion-icon>
+    </ion-item> 
+
+
+    <ion-row style="padding-bottom: 25px;">
+      <ion-col>
+        <ion-item>
+          <ion-text text-center color="medium"><h6 no-margin class="small">En créant votre compte vous acceptez les <a (click)="term()">termes d' utilisation</a> et <a (click)="term()">Conditions de confidentialité</a></h6></ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <div  class="container-form-btn">
+      <button (click)="register()"  class="form-btn custom-font">
+      {{ 'chaines.Register' | translate }}
+      </button>
+    </div>   
+  </form>
+</div>
+
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border">
+	<ion-toolbar>
+		<p class="ion-text-center custom-font">{{ 'chaines.AlreadyRegistered' | translate }} <span style="color:#ff001b;" (click)="login()" >{{ 'chaines.LogInNow' | translate }}</span></p>
+	</ion-toolbar>
+</ion-footer> -->

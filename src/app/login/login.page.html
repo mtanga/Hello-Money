@@ -1,0 +1,82 @@
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+    <div class="back-circle"></div>
+    <ion-title style="color:green;" class="ion-text-right custom-font" (click)="register()">{{ 'chaines.new' | translate }}</ion-title>
+    <ion-buttons slot="start" color="secondary">
+      <ion-back-button class="white" defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+
+  <svg class="back-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#ff001b" d="M68.6,-33.5C81.6,-17.2,79.6,13.8,65.7,37.6C51.8,61.3,25.9,77.8,2.1,76.6C-21.7,75.4,-43.5,56.5,-54.2,34.6C-65,12.7,-64.8,-12.3,-53.9,-27.4C-43,-42.4,-21.5,-47.6,3.2,-49.4C27.9,-51.2,55.7,-49.7,68.6,-33.5Z" transform="translate(100 100)" />
+</svg>
+
+<div class="ion-padding">
+
+  <form class="ion-padding" style="padding-top:100px;">
+
+    <div>
+      <h3>{{ 'chaines.login' | translate }}</h3>
+    </div>
+
+
+    <div class="wrap-input">
+      <ion-select name="language" [okText]='"chaines.Validate" | translate' [cancelText]='"chaines.Cancel" | translate' [(ngModel)]='language' (ionChange)='languageChange()' [placeholder]='"chaines.languageChangePlaceholder" | translate' >
+        <ion-select-option value='fr'> {{ 'chaines.French' | translate }}</ion-select-option>
+        <ion-select-option value='en'> {{ 'chaines.English' | translate }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="wrap-input">
+      <input class="input" type="text" [(ngModel)]="email" name="email" [placeholder]='"chaines.email" | translate'>
+    </div>
+
+
+    <ion-item class="wrap-input">
+      <input class="input" [type]="passwordType"  [(ngModel)]="password" name="password" clearOnEdit="false" [placeholder]='"chaines.Password" | translate' >
+      <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)="hideShowPassword()"></ion-icon>
+    </ion-item> 
+
+    <div class="container-form-btn">
+      <button (click)="loginWithEmail()" class="form-btn custom-font">
+      {{ 'chaines.LogIn' | translate }}
+      </button>
+    </div>   
+
+    <div >
+      <p (click)="forgot()" style="color:white;"  class="ion-text-center custom-font"> {{ 'chaines.Forgot' | translate }}</p>
+    </div> 
+
+
+  </form>
+
+</div>
+
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border">
+	<ion-toolbar>
+    <p class="ion-text-center custom-font"> {{ 'chaines.AlreadyRegistered' | translate }} <span style="color:#ff001b;" (click)="register()" >{{ 'chaines.signin' | translate }}</span></p>
+    <ion-item lines="none">
+      <ion-label>{{ 'chaines.ChooseLanguage' | translate }}</ion-label>
+      <ion-select name="language" [okText]='"chaines.Validate" | translate' [cancelText]='"chaines.Cancel" | translate' [(ngModel)]='language' (ionChange)='languageChange()' [placeholder]='"chaines.languageChangePlaceholder" | translate' >
+        <ion-select-option value='fr'> {{ 'chaines.French' | translate }}</ion-select-option>
+        <ion-select-option value='en'> {{ 'chaines.English' | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item lines="none">
+      <ion-label>{{ 'chaines.ChooseLanguage' | translate }}</ion-label>
+      <ion-select [okText]='"chaines.Validate" | translate' [cancelText]='"chaines.Cancel" | translate' [(ngModel)]='language' (ionChange)='languageChange()' [placeholder]='"chaines.languageChangePlaceholder" | translate' >
+        <ion-select-option value='fr'> {{ 'chaines.French' | translate }}</ion-select-option>
+        <ion-select-option value='en'> {{ 'chaines.English' | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer> -->

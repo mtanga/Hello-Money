@@ -1,20 +1,35 @@
-<ion-tabs>
 
-  <ion-tab-bar slot="bottom">
+<!-- end header menu definition -->
+<!-- begin header -->
+<ion-header no-border>
+  <ion-toolbar color="primary" mode="ios">
+    <!-- Menu left-->
+    <ion-title>
+      Hello Money
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- end header -->
+
+<ion-tabs main>
+
+  <ion-tab-bar slot="bottom" style="border-top: none; background:#eaf6ff;">
     <ion-tab-button tab="tab1">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Tab 1</ion-label>
+      <ion-icon name="arrow-redo"></ion-icon>
+      <ion-label>  {{ 'chaines.sende' | translate }}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="tab2">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>Tab 2</ion-label>
+      <ion-icon name="repeat-outline"></ion-icon>
+      <ion-label>  {{ 'chaines.convert' | translate }}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="tab3">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>Tab 3</ion-label>
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>  {{ 'chaines.settings' | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 
 </ion-tabs>
+
+

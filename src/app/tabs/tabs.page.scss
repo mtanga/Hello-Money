@@ -1,1 +1,119 @@
 
+.iconDownload{
+    width: 25px;
+    height: 25px;
+}
+
+.iconMenu{
+    width: 20px;
+    height: 20px;
+    color : #ff001b;
+}
+.order{
+    z-index: -1;
+}
+.header-md::after {
+    left: 0;
+    bottom: -5px;
+    background-position: left 0 top -2px;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-image: none;
+    background-repeat: repeat-x;
+    content: "";
+}
+
+
+.bgon{
+  background: transparent!important;
+}
+
+.ion-color-primary {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+ }
+
+  .mod{
+  background: #ff001b!important;
+ }
+
+ .sc-ion-buttons-ios-h {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 99;
+    color: #ff001b;
+}
+
+ion-tab-bar, ion-tab-button{
+ background-color:#eaf6ff;
+}
+
+
+
+
+ion-menu ion-content {
+    * {
+        font-family: lato;
+    }
+    letter-spacing: 0.5px;
+    --background: white;
+    .main-header {
+        height: 25vh;
+        width: 120%;
+        background: #ff001b;
+        box-shadow: 0 1px 10px var(--ion-color-light);
+        border-radius: 0 0 50% 50%;
+        margin-left: -4.5vh;
+        div {
+            transform: translateY(3vh);
+            ion-avatar {
+                width: 10vh;
+                height: 10vh;
+                background: var(--ion-color-white);
+                margin-bottom: 5px;
+                border: 7px solid var(--ion-color-primary);
+            }
+            ion-label {
+                font-weight: bold;
+                font-size: 1.2rem;
+                p {
+                    margin-top: 3px;
+                    ion-text {
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+    }
+    .menu-items {
+        padding-left: 20px;
+        ion-item.selected {
+            --background: rgba(var(--ion-color-primary-rgb), 0.14);
+            border-left: 5px solid var(--ion-color-tertiary);
+            ion-label {
+                color: var(--ion-color-tertiary);
+                font-weight: bold;
+            }
+        }
+        ion-item.selected ion-icon {
+            color: var(--ion-color-tertiary);
+        }
+    }
+}
+
+ion-menu ion-footer {
+    ion-toolbar {
+        border-radius: 10px 10px 0 0;
+    }
+}
+
+ion-title{
+    text-align: left!important;
+    margin-left: -70px!important;
+    color: red!important;
+  }

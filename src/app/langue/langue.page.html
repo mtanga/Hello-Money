@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ 'chaines.ChangeLanguage' | translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ 'chaines.CurentLanguage' | translate }}</ion-card-title>
+      <ion-card-subtitle *ngIf="showl==true">English</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="showl==false">Français</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>{{ 'chaines.ChooseLanguage' | translate }}</ion-label>
+        <ion-select [okText]='"chaines.Validate" | translate' [cancelText]='"chaines.Cancel" | translate' [(ngModel)]='language' (ionChange)='languageChange()' [placeholder]='"chaines.languageChangePlaceholder" | translate' >
+          <ion-select-option value='fr'> {{ 'chaines.French' | translate }}</ion-select-option>
+          <ion-select-option value='en'> {{ 'chaines.English' | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+
+   
+  </ion-card>
+
+</ion-content>

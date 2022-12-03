@@ -1,0 +1,40 @@
+<ion-content class="ion-padding">
+  <ion-slides pager="true">
+    <ion-slide class="ion-padding">
+      <img src="../../assets/slide3.png" >
+      <div class="slider-text">
+        <h2>{{ 'chaines.t1' | translate }}</h2>
+        <p>
+          {{ 'chaines.s1' | translate }}
+        </p>
+      </div>
+      <div class="navigator">
+        <ion-button color="primary" fill="clear" (click)="skip()">{{ 'chaines.sk' | translate }}</ion-button>
+        <ion-button color="primary" fill="clear" (click)="next()">{{ 'chaines.nt' | translate }}</ion-button>
+      </div>
+    </ion-slide>
+    <ion-slide class="ion-padding">
+      <img src="../../assets/slide1.png" >
+      <div class="slider-text">
+        <h2>{{ 'chaines.t2' | translate }}</h2>
+        <p>
+          {{ 'chaines.s2' | translate }}
+        </p>
+      </div>
+      <div class="navigator">
+             <ion-button color="primary" fill="clear" (click)="skip()">{{ 'chaines.sk' | translate }}</ion-button>
+        <ion-button color="primary" fill="clear" (click)="next()">{{ 'chaines.nt' | translate }}</ion-button>
+      </div>
+    </ion-slide>
+    <ion-slide class="ion-padding">
+      <img src="../../assets/slide2.png" >
+      <div class="slider-text">
+        <h2> {{ 'chaines.t3' | translate }}</h2>
+        <p>
+          {{ 'chaines.s3' | translate }}
+        </p>
+      </div>
+      <ion-button (click)="go()" color="primary"> {{ 'chaines.go' | translate }}</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

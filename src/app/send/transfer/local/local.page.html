@@ -1,0 +1,258 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title>{{ 'chaines.localMoney' | translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+<!-- Customer infos -->
+  <div class="slides ion-margin-bottom">
+    <ion-slides >
+      <ion-slide>
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <ion-card-title class="ion-margin-bottom"> <span class="steps">{{ 'chaines.step' | translate }} 1</span>{{ 'chaines.SendAmountTitle' | translate }}</ion-card-title>
+            <ion-card-subtitle class="ion-text-center">
+              <ion-list>
+                  <ion-grid>
+                      <ion-row>
+                        <ion-col size="4">
+                          <label>{{ 'chaines.from' | translate }}</label>
+                          <ion-select  [(ngModel)]="country" name="country" [placeholder]="'chaines.selectDevise' | translate" class="devise">
+                              <ion-select-option value="XAF">XAF</ion-select-option>
+                            </ion-select>
+                        </ion-col>
+                        <ion-col size="8">
+                          <!-- Number type input -->
+                          <label>{{ 'chaines.SendAmount' | translate }}</label>
+                          <ion-input [(ngModel)]="amount" name="amount" (keypress)="numberOnly($event)"  class="devise" type="text"></ion-input>
+                        </ion-col>
+                      </ion-row>
+                  </ion-grid>
+                  <div>
+                          <label>{{ 'chaines.ywallet' | translate }}</label>
+                          <ion-select  [(ngModel)]="method" name="method" [placeholder]="'chaines.selectMethod' | translate" class="devise" (ionChange)="onChange($event)">
+                              <ion-select-option  *ngFor="let service of services;" [value]="service.id">{{service.name}}</ion-select-option>
+                            </ion-select>
+                  </div>
+
+                <div>
+                  <label>{{ 'chaines.wnumber' | translate }}</label><br>
+                  <ion-intl-tel-input 
+                      class="devise"
+                      id="phone-number" 
+                      name="phone-number"
+                      enableAutoCountrySelect="true"
+                      modalTitle="Sélectionner votre pays"
+                      modalCloseText="Fermer"
+                      modalCanSearch="true"
+                      onlyCountries = "cm"
+                      [(ngModel)]="phoneNumber" 
+                      #phoneNumberControl="ngModel" >
+                  </ion-intl-tel-input>
+                  <span class="warning">{{warningPhone1}}</span>
+                </div>
+              </ion-list>
+              <!-- <ion-button [disabled]="sendStatus()!=5" (click)="sendNow()"  expand="full">{{ 'chaines.step2' | translate }}</ion-button> -->
+            </ion-card-subtitle>
+            <ion-progress-bar value="0.5" color="custom"></ion-progress-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+
+<!-- receiver infos -->
+<div class="slides ion-margin-bottom" *ngIf="sendStatus()==5">
+  <ion-slides >
+    <ion-slide>
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <ion-card-title class="ion-margin-bottom"> <span class="steps">{{ 'chaines.step' | translate }} 2</span>{{ 'chaines.clientB' | translate }}</ion-card-title>
+          <ion-card-subtitle class="ion-text-center">
+            <ion-list>
+                <div>
+                        <label>{{ 'chaines.methodlabel' | translate }}</label>
+                        <ion-select  [(ngModel)]="methods" name="methods" [placeholder]="'chaines.selectMethod' | translate" class="devise" (ionChange)="onChanges($event)">
+                            <ion-select-option  *ngFor="let services of cashInServices;" [value]="services.id">{{services.name}}</ion-select-option>
+                          </ion-select>
+                </div>
+
+              
+              <div class="receiver">
+                <label>{{ 'chaines.wnumber' | translate }}</label><br>
+                <ion-intl-tel-input 
+                    class="devise"
+                    id="phone-number" 
+                    name="phone-number"
+                    enableAutoCountrySelect="true"
+                    modalTitle="Sélectionner votre pays"
+                    modalCloseText="Fermer"
+                    modalCanSearch="true"
+                    [value]="phonetext"
+                    onlyCountries = "cm"
+                    [(ngModel)]="phoneNumbers" 
+                    #phoneNumberControl="ngModel" >
+                </ion-intl-tel-input>
+
+                <span class="goophone">{{receiverNumber}}</span><br/>
+                <span class="goophone" *ngIf="receiverNumber!=undefined && receiverNumber.length != 18">{{ 'chaines.inccorectPhone' | translate }}</span>
+
+                <span class="warning">{{warningPhone}}</span>
+
+                <hr class="new1">
+
+                <ion-button (click)="pickContact()"  expand="full">{{ 'chaines.choosePhone' | translate }}</ion-button>
+              </div>
+
+
+            </ion-list>
+            <ion-button  [disabled]="sendStatuss()!=3 || sendStatus()!=5" (click)="sendNows()"  expand="full">{{ 'chaines.sendConfirm' | translate }}</ion-button>
+          </ion-card-subtitle>
+          <ion-progress-bar value="0.5" color="custom"></ion-progress-bar>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</div>
+
+
+
+<!-- Step 3 -->
+
+
+  <div class="slides ion-margin-bottom" *ngIf="showed">
+      <ion-slides >
+        <ion-slide style="width: 340px!important;">
+
+
+          <ion-card>
+            <ion-card-content class="ion-text-center">
+              <ion-card-title class="ion-margin-bottom"> <span class="steps">{{ 'chaines.step3' | translate }}</span>{{ 'chaines.ConvertedAmount' | translate }}</ion-card-title>
+              <ion-card-subtitle class="ion-text-center">
+                <ion-list>
+  
+
+                  <ion-item lines="none">
+                      <ion-label>
+                        {{ 'chaines.time_last_update_utc' | translate }}<br>
+                        {{currencies.time_last_update_utc| date: 'dd-MM-yyyy HH:mm:ss'}}
+                      </ion-label>
+                    </ion-item>
+  
+                    <div class="roundeds">
+                      <ion-item lines="none">
+                          <ion-label>
+                            {{ 'chaines.yousend' | translate }} <br> 
+                            {{format(amount)}} {{currencies.base_code}}
+                          </ion-label>
+                        </ion-item>
+
+
+                        <ion-item lines="none">
+                          <ion-label>
+                            {{ 'chaines.conversion_rate' | translate }} <br> 
+                            1 {{currencies.base_code}} = {{currencies.conversion_rate}} {{currencies.target_code}}
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item lines="none">
+                          <ion-label>
+                            {{ 'chaines.methodlabel' | translate }} <br> 
+                            {{methodService.name}}<br/> ({{phoneNumbers?.internationalNumber || receiverNumber}})
+                          </ion-label>
+                        </ion-item>
+
+
+                        <ion-item lines="none">
+                          <ion-label>
+                            {{ 'chaines.amountConverted' | translate }} <br> 
+                            {{format(amountConverted)}} XAF
+                          </ion-label>
+                        </ion-item>
+
+
+
+
+                        <ion-item lines="none">
+                          <ion-label>
+                            {{ 'chaines.fees' | translate }} <br> 
+                            {{comission}} {{currencies.target_code}}
+                          </ion-label>
+                        </ion-item>
+
+
+
+                        <ion-item lines="none">
+                          <ion-label>
+                            {{ 'chaines.receved' | translate }} <br> 
+                            {{amount-comission}} {{currencies.target_code}}
+                          </ion-label>
+                        </ion-item>
+                  </div>
+  
+  
+                    <ion-item lines="none">
+                      <ion-label>
+                        {{ 'chaines.time_next_update_utc' | translate }}<br>
+                        {{currencies.time_next_update_utc | date: 'dd-MM-yyyy HH:mm:ss'}}
+                      </ion-label>
+                    </ion-item> 
+
+  
+                </ion-list>
+  
+                <ion-button (click)="sendConfirm()" [disabled]="hitCodeDiv" expand="full">{{ 'chaines.confirmSend' | translate }}</ion-button>
+
+              </ion-card-subtitle>
+              <ion-progress-bar value="0.5" color="custom"></ion-progress-bar>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Step 4 -->
+
+
+  <div class="slides ion-margin-bottom" *ngIf="hitCodeDiv">
+    <ion-slides >
+      <ion-slide style="width: 340px!important;">
+
+
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <ion-card-title class="ion-margin-bottom"> <span >Confirmation</span></ion-card-title>
+            <ion-card-subtitle class="ion-text-center">
+    
+              <h4 style="padding-top:20px;" class="mb-3">{{ 'chaines.payvalidate' | translate }}</h4>
+              <p style="color:green;">{{ 'chaines.pleaseValidate' | translate }}</p>
+              <p style="color:blue;">{{ 'chaines.notice1' | translate }}</p>
+  
+              <p style="color:red;">{{ 'chaines.notice2' | translate }}</p>
+
+              <ion-button (click)="VerifyConfirm()" [disabled]="timeLeft>0" expand="full"><br/><small class="petit">{{this.sec}}</small></ion-button>
+
+            </ion-card-subtitle>
+            <ion-progress-bar value="0.5" color="custom"></ion-progress-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title>{{ 'chaines.latestt' | translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--Transactions-->
+  <div class="slides ion-margin-bottom" *ngFor="let info of infos">
+    <ion-slides [options]="slidesOptions" style="margin-top: -25px;
+    margin-left: -8px;">
+      <ion-slide>
+
+        <ion-card style="margin: 20px;" >
+          <ion-card-content class="ion-text-left" style="padding: 0px;">
+            <ion-list class="padding">
+              <ion-item (click)="showTransaction(info)">
+                <ion-icon color="primary" slot="start" name="card-outline"></ion-icon>
+                <ion-label>
+                    {{ 'chaines.cardTrans' | translate }} 
+                </ion-label>
+               <!--  <ion-badge slot="end">22</ion-badge> -->
+                <ion-icon color="primary" slot="end" name="chevron-forward"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+
+        <ion-card style="margin: 20px;" *ngIf="!infos">
+            <ion-card-content class="ion-text-left" style="padding: 0px;">
+              <ion-list class="padding">
+                <ion-item >
+                  <ion-label>
+                      {{ 'chaines.zerot' | translate }} 
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
